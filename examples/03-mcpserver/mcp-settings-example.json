@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "chuck-norris-jokes": {
+      "command": "node",
+      "args": ["C:/Code/DKMaker/AI-Vibe/examples/03-mcpserver/build/index.js"],
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}

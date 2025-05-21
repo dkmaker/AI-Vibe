@@ -1,0 +1,26 @@
+{
+  "name": "chuck-norris-jokes-server",
+  "version": "1.0.0",
+  "description": "MCP server for fetching Chuck Norris jokes",
+  "type": "module",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "tsc && powershell -Command \"if (Test-Path build/index.js) { (Get-Item build/index.js).IsReadOnly = $false }\"",
+    "start": "node build/index.js"
+  },
+  "keywords": [
+    "mcp",
+    "chuck-norris",
+    "jokes"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.11.5",
+    "axios": "^1.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.21",
+    "typescript": "^5.8.3"
+  }
+}
