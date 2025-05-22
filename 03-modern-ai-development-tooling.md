@@ -157,12 +157,240 @@ The power of this approach is that the same pattern works for any custom capabil
 
 
 
-### Task-master AI Systems
-- Moving beyond code generation to workflow automation
-  * Task-master AI systems automate entire development workflows, from initial concept to deployment, orchestrating various AI tools and human interventions.
-- Key capabilities: requirement analysis, ticket breakdown, PR generation
-  * These systems can analyze high-level requirements, break them down into actionable tasks, generate detailed tickets, and even draft pull requests, streamlining project management.
-- Integration with existing development tools and processes
-  * They seamlessly integrate with version control systems (e.g., Git), project management tools (e.g., Jira), and CI/CD pipelines, ensuring a cohesive development environment.
-- Measuring impact: before and after implementation metrics
-  * Impact is measured by metrics such as reduced cycle time, increased feature velocity, lower defect rates, and improved developer satisfaction, demonstrating tangible ROI.
+### Task-master AI Systems: Beyond Code Generation
+
+#### Moving beyond code generation to workflow automation
+- Task-master AI systems represent the next evolution in development tools, automating entire workflows rather than just generating code snippets
+- These systems orchestrate the complete development lifecycle, from requirements analysis to implementation planning and task management
+- By intelligently breaking down large projects into manageable components, they transform abstract ideas into structured development plans
+- The goal is not to replace developers but to eliminate repetitive planning work so they can focus on creative problem-solving
+
+#### Key capabilities: requirement analysis, ticket breakdown, PR generation
+- **Intelligent PRD Analysis**: Task-master can parse Product Requirement Documents and extract key features, dependencies, and implementation details
+- **Complexity Assessment**: The system analyzes task difficulty to identify high-risk areas that may require more resources or developer attention
+- **Smart Task Decomposition**: Complex tasks are automatically broken down into subtasks with clear acceptance criteria and dependencies
+- **Dynamic Task Adaptation**: As development progresses, the system can update and reprioritize tasks based on new information or changing requirements
+- **Research-Driven Planning**: Leverages external knowledge to inform implementation approaches, technology choices, and potential challenges
+
+#### Integration with existing development tools and processes
+- Seamlessly fits into established development workflows rather than requiring complete process changes
+- Connects with version control (Git), project management tools (Jira, GitHub Issues), and CI/CD pipelines
+- Structured task output can be exported to various formats and systems to maintain team flexibility
+- Enhances rather than replaces human decision-making by providing AI-augmented insights
+
+#### Measuring impact: before and after implementation metrics
+- **Development Velocity**: 30-50% reduction in time from requirements to implementation start
+- **Planning Accuracy**: Up to 40% improvement in estimation accuracy through AI-driven complexity analysis
+- **Resource Allocation**: Better distribution of work across team members based on AI-assessed task complexity
+- **Technical Debt Reduction**: Early identification of implementation challenges reduces rework and refactoring
+- **Knowledge Distribution**: Shared understanding of tasks reduces dependency on tribal knowledge and documentation gaps
+
+### Taskmaster Demo: From PRD to Implementation Plan
+
+#### Overview of Demo Workflow
+
+The following demonstration showcases how Taskmaster processes a Product Requirements Document (PRD) for a Tetris web application and transforms it into an actionable implementation plan. This workflow illustrates the power of AI-driven development planning without requiring any coding from the audience.
+
+```mermaid
+graph TD
+    A[PRD Document] --> B[Initialize Project]
+    B --> C[Parse PRD]
+    C --> D[Generate Initial Tasks]
+    D --> E[Analyze Task Complexity]
+    E --> F[Expand Complex Tasks]
+    F --> G[Research-Backed Task Updates]
+    G --> H[Implementation Ready]
+    
+    style A fill:#f9d5e5,stroke:#333,stroke-width:2px
+    style H fill:#d5f9e5,stroke:#333,stroke-width:2px
+```
+
+#### Live Demo Script
+
+##### Setup Before the Demo
+- Ensure you have the Task Master CLI installed (`npm install -g task-master-ai`)
+- Verify the tetris_prd.txt file is in the examples/03-taskmaster/scripts/ directory
+- Check that you've configured your API keys in the .env file
+- Clear any existing tasks/ directory content for a fresh demo
+
+##### Introduction (1-2 minutes)
+
+**Key Points:**
+* Task-master as next-gen AI development tool - beyond code generation
+* Demo focus: PRD to implementation plan without writing code
+* Highlight workflow automation capabilities
+* Emphasize the transformation from text requirements to structured tasks
+
+##### Demo Flow
+
+###### Step 1: Project Initialization (1 minute)
+
+**Run command:**
+```bash
+cd examples/03-taskmaster
+task-master init --yes
+```
+
+**Key Points:**
+* Project initialization creates directory structure and config files
+* `.taskmasterconfig` file stores AI model preferences
+* One-time setup process for each new project
+
+**Point out:**
+- The creation of the config file
+- The structured directory organization
+- Mention that this only needs to be done once per project
+
+###### Step 2: Parse PRD and Generate Tasks (2-3 minutes)
+
+**Run command:**
+```bash
+task-master parse-prd scripts/tetris_prd.txt
+```
+
+**Key Points:**
+* AI analyzes entire PRD document structure and content
+* Extracts implementation tasks from requirements
+* Establishes logical dependencies between tasks
+* Creates structured task definitions with detailed guidance
+
+**Point out:**
+- The AI analyzing the document sections
+- How it identifies key tasks from different sections
+- The dependency relationships it establishes between tasks
+- The structured output in the tasks.json file
+
+###### Step 3: View Generated Tasks (1-2 minutes)
+
+**Run command:**
+```bash
+task-master list
+```
+
+**Key Points:**
+* View all extracted tasks with titles, descriptions, and dependencies
+* Tasks organized according to development phases from PRD
+* Each task includes implementation guidance
+* Dependencies reflect logical development flow
+
+**Point out:**
+- The hierarchical organization of tasks
+- How they align with the development phases from the PRD
+- The detailed descriptions and implementation guidance
+- The established dependencies
+
+###### Step 4: Analyze Task Complexity (2-3 minutes)
+
+**Run command:**
+```bash
+task-master analyze-complexity --research
+```
+
+**Key Points:**
+* AI evaluates each task for implementation complexity
+* Factors include technical difficulty, scope, dependencies
+* Identifies tasks requiring further breakdown
+* Research-backed analysis provides implementation insights
+
+**After analysis, run:**
+```bash
+task-master complexity-report
+```
+
+**Point out:**
+- The complexity scores for each task
+- Tasks identified as high complexity (scores 7-10)
+- The expansion recommendations
+- Research-backed reasoning for complexity ratings
+
+###### Step 5: Expand a Complex Task (2-3 minutes)
+
+**Run command:**
+```bash
+task-master expand --id=8 --research
+```
+
+**Key Points:**
+* Breaking down complex task into manageable subtasks
+* Research-backed best practices for implementation
+* Maintaining dependency relationships between subtasks
+* Detailed guidance for each component
+
+**Point out:**
+- The subtasks being created
+- The detailed implementation guidance for each subtask
+- Research-backed recommendations
+- How dependencies between subtasks are managed
+
+###### Step 6: Find the Next Task to Work On (1 minute)
+
+**Run command:**
+```bash
+task-master next
+```
+
+**Key Points:**
+* AI determines optimal next task based on dependencies
+* Respects current task statuses and completion state
+* Provides clear reasoning for recommendation
+* Ensures logical development progression
+
+**Point out:**
+- The recommended next task
+- The explanation of why this task should be tackled next
+- How the system respects task dependencies
+
+###### Step 7: Update a Task with Research (2 minutes)
+
+**Run command:**
+```bash
+task-master update-task --id=15 --prompt="Update based on modern HTML5 Canvas performance best practices" --research
+```
+
+**Key Points:**
+* Incorporating new information into existing tasks
+* Research-backed updates with current best practices
+* Timestamped changes for tracking evolution
+* Specific, actionable implementation guidance
+
+**Point out:**
+- The before/after comparison of the task
+- The research-backed updates
+- How specific and actionable the new guidance is
+- The timestamp showing when the update was made
+
+###### Step 8: Demonstrate Task Status Updates (1 minute)
+
+**Run command:**
+```bash
+task-master set-status --id=1 --status=in-progress
+```
+
+**Key Points:**
+* Tracking development progress through status updates
+* Status changes affect next task recommendations
+* Dynamic planning adapts to current state
+* Continuous guidance throughout development lifecycle
+
+**Run command to see updated next task:**
+```bash
+task-master next
+```
+
+**Point out:**
+- How the next task recommendation has changed
+- The dynamic nature of the task planning
+
+##### Conclusion (1 minute)
+
+**Key Points:**
+* Complete transformation: text PRD → structured development plan
+* AI automation without writing code
+* Accelerated development through intelligent planning
+* Consistent quality and reduced technical debt
+* Key benefits:
+  - Automated task extraction
+  - Intelligence-driven complexity analysis
+  - Dynamic task breakdown
+  - Research-backed guidance
+  - Continuous adaptation
