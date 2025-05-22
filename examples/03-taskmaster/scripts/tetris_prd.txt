@@ -1,0 +1,253 @@
+<context>
+# Overview
+Tetris Web is a modern implementation of the classic Tetris game, delivered as a web application. This project demonstrates how a simple game can be enhanced with modern web features such as user authentication and score tracking. The game targets casual gamers who enjoy classic arcade games and serves as an excellent demonstration of web-based game development using JavaScript, Node.js, and basic authentication principles.
+
+# Core Features
+
+## User Authentication
+- What it does: Provides a secure login system for players to access the game
+- Why it's important: Allows for personalized experiences and score tracking
+- How it works: Simple username/password authentication against a JSON file database
+
+## Classic Tetris Gameplay
+- What it does: Delivers the core Tetris experience with falling blocks that players must arrange to create complete lines
+- Why it's important: Provides the primary entertainment value and challenge
+- How it works: JavaScript-based game engine that handles block movement, rotation, collision detection, and line clearing
+
+## Score Tracking & Leaderboard
+- What it does: Records player scores and displays a leaderboard of top performances
+- Why it's important: Adds competitive elements and replayability
+- How it works: Stores scores in the user database and displays them in a sorted leaderboard
+
+## Difficulty Progression
+- What it does: Gradually increases game speed as players clear more lines
+- Why it's important: Ensures the game becomes more challenging over time, maintaining player engagement
+- How it works: Algorithm that incrementally increases block falling speed based on lines cleared or time played
+
+## Game Controls Customization
+- What it does: Allows players to customize keyboard controls for movement and rotation
+- Why it's important: Enhances accessibility and user comfort
+- How it works: Settings page where users can rebind controls, stored in their user profile
+
+# User Experience
+
+## User Personas
+1. Casual Gamer: Plays occasionally for entertainment, familiar with Tetris, interested in comparing scores with others
+2. Competitive Player: Focused on achieving high scores, appreciates challenging gameplay and leaderboard features
+3. Nostalgic User: Enjoys the classic Tetris experience but appreciates modern conveniences like saved preferences
+
+## Key User Flows
+1. Registration & Login:
+   - New user creates an account with username and password
+   - Returning user logs in to access saved settings and view past scores
+
+2. Game Session:
+   - User starts a new game from the main menu
+   - Plays until game over condition (blocks reach the top)
+   - Views score and option to play again
+
+3. Leaderboard Interaction:
+   - User checks global leaderboard
+   - Filters by time period (daily, weekly, all-time)
+   - Views personal best scores
+
+## UI/UX Considerations
+- Clean, minimalist interface with focus on the game grid
+- Responsive design that works on various screen sizes
+- High contrast colors for blocks to ensure visibility
+- Real-time feedback for actions (sounds, animations)
+- Clear display of current score, level, and next piece
+</context>
+<PRD>
+# Technical Architecture
+
+## System Components
+1. Frontend:
+   - HTML5 canvas for game rendering
+   - JavaScript for game logic and UI interactions
+   - CSS for styling and responsive design
+
+2. Backend:
+   - Node.js server to serve game assets and handle authentication
+   - Express.js for API endpoints and routing
+   - JSON file-based data storage for user information and scores
+
+## Data Models
+1. User Model:
+   ```
+   {
+     "id": "unique-id",
+     "username": "string",
+     "password": "hashed-string",
+     "controls": {
+       "moveLeft": "KeyA",
+       "moveRight": "KeyD",
+       "rotate": "KeyW",
+       "softDrop": "KeyS",
+       "hardDrop": "Space"
+     },
+     "scores": [
+       {
+         "score": number,
+         "level": number,
+         "lines": number,
+         "date": "timestamp"
+       }
+     ]
+   }
+   ```
+
+2. Game State Model:
+   ```
+   {
+     "grid": "2D array of block values",
+     "currentPiece": {
+       "type": "string",
+       "position": {"x": number, "y": number},
+       "rotation": number
+     },
+     "nextPiece": "string",
+     "score": number,
+     "level": number,
+     "lines": number
+   }
+   ```
+
+## APIs and Integrations
+1. Authentication API:
+   - POST /api/auth/register - Create new user
+   - POST /api/auth/login - Authenticate user
+   - GET /api/auth/logout - End user session
+
+2. User API:
+   - GET /api/user/profile - Get user details
+   - PUT /api/user/controls - Update control preferences
+   - GET /api/user/scores - Get user's scores
+
+3. Leaderboard API:
+   - GET /api/leaderboard - Get global scores
+   - POST /api/leaderboard - Submit new score
+
+## Infrastructure Requirements
+- Node.js runtime environment
+- Express web server
+- File system access for JSON database
+- Session management for authentication
+- Static file serving for frontend assets
+
+# Development Roadmap
+
+## Phase 1: MVP (Core Game Functionality)
+- Basic Tetris game mechanics
+  - Block generation and falling
+  - User controls for movement and rotation
+  - Collision detection
+  - Line clearing and scoring
+- Simple HTML/CSS layout
+- Game loop and rendering
+- Basic scoring system
+
+## Phase 2: User Authentication & Persistence
+- User registration and login API
+- Password hashing and security
+- JSON file database implementation
+- Session management
+- Connecting user accounts to game sessions
+
+## Phase 3: Enhanced Game Features
+- Next piece preview
+- Difficulty progression
+- Game over conditions
+- Enhanced scoring system (combos, T-spins, etc.)
+- Sound effects and basic animations
+
+## Phase 4: User Experience Enhancements
+- Control customization
+- Responsive design improvements
+- Leaderboard implementation
+- User profile page
+- Visual polish and UI improvements
+
+## Phase 5: Future Enhancements (Beyond MVP)
+- Multiplayer functionality
+- Alternative game modes (e.g., Marathon, Sprint)
+- Power-ups and special blocks
+- Theme customization
+- Mobile touch controls
+
+# Logical Dependency Chain
+
+## Foundation (Must be built first)
+1. Node.js/Express server setup
+2. Basic HTML/CSS/JS structure
+3. Tetris grid rendering
+
+## Core Game Mechanics
+4. Block types and generation
+5. Game loop implementation
+6. User input handling
+7. Collision detection
+8. Line clearing and scoring
+
+## User System
+9. User model and JSON storage
+10. Authentication endpoints
+11. Session management
+12. User preferences storage
+
+## Scoring & Progression
+13. Enhanced scoring algorithms
+14. Level progression
+15. Game over handling
+16. Score saving
+
+## Polish & Enhancement
+17. UI improvements
+18. Leaderboard functionality
+19. Sound and visual effects
+20. Control customization
+
+# Risks and Mitigations
+
+## Technical Challenges
+- Risk: Canvas performance issues with animations
+  Mitigation: Optimize rendering, use requestAnimationFrame, consider fallback rendering methods
+
+- Risk: JSON file database scaling limitations
+  Mitigation: Implement proper file locking, consider migration path to a proper database for production
+
+- Risk: Session management security concerns
+  Mitigation: Use secure cookies, implement proper token validation, consider rate limiting
+
+## MVP Scope
+- Risk: Feature creep extending development time
+  Mitigation: Strictly prioritize core Tetris functionality first, ensure phases 1-2 provide a playable experience
+
+- Risk: Complexity of game mechanics taking longer than expected
+  Mitigation: Start with simplest implementation, then iterate with enhancements
+
+## Resource Constraints
+- Risk: Limited assets for visual and audio elements
+  Mitigation: Use open-source game assets, implement placeholder graphics early
+
+- Risk: Browser compatibility issues
+  Mitigation: Use widely supported web technologies, implement feature detection
+
+# Appendix
+
+## Tetris Game Rules Reference
+- Standard 10×20 grid
+- Seven standard tetromino shapes (I, O, T, S, Z, J, L)
+- Standard rotation system (Super Rotation System)
+- Scoring system:
+  - Single line: 100 × level
+  - Double line: 300 × level
+  - Triple line: 500 × level
+  - Tetris (four lines): 800 × level
+
+## Technical Implementation Notes
+- Canvas vs. DOM rendering trade-offs
+- Considerations for keyboard input handling
+- JSON file database design considerations
+- Session token implementation options
+</PRD>
